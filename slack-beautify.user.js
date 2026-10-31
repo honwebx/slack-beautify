@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Slack 美化
 // @namespace    https://github.com/honwebx/slack-beautify
-// @version      1.0.0
+// @version      1.0.1
 // @description  气泡消息、界面精简、客服频道专属样式、编辑器固定
 // @match        https://app.slack.com/*
 // @run-at       document-start
@@ -37,40 +37,40 @@
    * %SCOPE% 会替换成该频道的开关选择器 */
   const CHANNEL_CSS = `
     /* 去掉气泡 */
-    %SCOPE% #message-list .c-message_kit__blocks {
+    %SCOPE% .p-view_contents--primary #message-list .c-message_kit__blocks {
       width: auto !important;
       max-width: none !important;
       padding-left: 0 !important;
       background: transparent !important;
     }
     /* 编辑器 */
-    %SCOPE% .workspace__primary_view_footer {
+    %SCOPE% .p-view_contents--primary .workspace__primary_view_footer {
       display: none !important;
     }
     /* Inbox 通知 */
-    %SCOPE% #message-list .p-rich_text_section {
+    %SCOPE% .p-view_contents--primary #message-list .p-rich_text_section {
       display: -webkit-box !important;
       -webkit-box-orient: vertical !important;
       -webkit-line-clamp: 1 !important;
       overflow: hidden !important;
     }
     /* 卡片 */
-    %SCOPE% #message-list .c-message_kit__gutter__right {
+    %SCOPE% .p-view_contents--primary #message-list .c-message_kit__gutter__right {
       border-bottom: 1px solid light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
       padding-left: 0 !important;
       margin-left: 0 !important;
       margin-bottom: -8px !important;
     }
-    %SCOPE% #message-list .c-message_kit__background:hover {
+    %SCOPE% .p-view_contents--primary #message-list .c-message_kit__background:hover {
       background: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)) !important;
     }
-    %SCOPE% #message-list .p-message_pane_message__active_thread {
+    %SCOPE% .p-view_contents--primary #message-list .p-message_pane_message__active_thread {
       background: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1)) !important;
     }
-    %SCOPE% #message-list .c-message_kit__background:hover .c-message_kit__gutter__right,
-    %SCOPE% #message-list .p-message_pane_message__active_thread .c-message_kit__gutter__right,
-    %SCOPE% #message-list .c-virtual_list__item:has(+ .c-virtual_list__item .p-message_pane_message__active_thread) .c-message_kit__gutter__right,
-    %SCOPE% #message-list .c-virtual_list__item:has(+ .c-virtual_list__item:hover) .c-message_kit__gutter__right {
+    %SCOPE% .p-view_contents--primary #message-list .c-message_kit__background:hover .c-message_kit__gutter__right,
+    %SCOPE% .p-view_contents--primary #message-list .p-message_pane_message__active_thread .c-message_kit__gutter__right,
+    %SCOPE% .p-view_contents--primary #message-list .c-virtual_list__item:has(+ .c-virtual_list__item .p-message_pane_message__active_thread) .c-message_kit__gutter__right,
+    %SCOPE% .p-view_contents--primary #message-list .c-virtual_list__item:has(+ .c-virtual_list__item:hover) .c-message_kit__gutter__right {
       border-color: transparent;
     }
     `;
