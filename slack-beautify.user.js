@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Slack 美化
 // @namespace    https://github.com/honwebx/slack-beautify
-// @version      1.0.1
+// @version      1.0.2
 // @description  气泡消息、界面精简、客服频道专属样式、编辑器固定
 // @match        https://app.slack.com/*
 // @run-at       document-start
@@ -43,10 +43,14 @@
       padding-left: 0 !important;
       background: transparent !important;
     }
+
+    /* 开场消息 */
+    %SCOPE% .p-view_contents--primary #message-list_0000000000\\.000001,
     /* 编辑器 */
     %SCOPE% .p-view_contents--primary .workspace__primary_view_footer {
       display: none !important;
     }
+
     /* Inbox 通知 */
     %SCOPE% .p-view_contents--primary #message-list .p-rich_text_section {
       display: -webkit-box !important;
@@ -295,9 +299,16 @@
     return machine;
   }
 
+  // 附件全部被删除（Chatwoot 转发的消息只剩占位）
+  function allFilesDeleted(row) {
+    const files = row.querySelectorAll('[data-qa="message_file_container"]');
+    if (!files.length) return false;
+    return row.querySelectorAll('[data-qa="message_file_container"] .c-file_entity--exception').length === files.length;
+  }
+
   // 已删除消息
   function markDeleted(row) {
-    const on = HIDE_DELETED && !!row.querySelector(".c-message_kit__tombstone__text");
+    const on = HIDE_DELETED && !!(row.querySelector(".c-message_kit__tombstone__text") || allFilesDeleted(row));
     row.toggleAttribute("data-sb-deleted", on);
     return on;
   }
