@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Slack 美化
 // @namespace    https://github.com/honwebx/slack-beautify
-// @version      1.0.2
+// @version      1.0.3
 // @description  气泡消息、界面精简、客服频道专属样式、编辑器固定
 // @match        https://app.slack.com/*
 // @run-at       document-start
@@ -44,8 +44,6 @@
       background: transparent !important;
     }
 
-    /* 开场消息 */
-    %SCOPE% .p-view_contents--primary #message-list_0000000000\\.000001,
     /* 编辑器 */
     %SCOPE% .p-view_contents--primary .workspace__primary_view_footer {
       display: none !important;
